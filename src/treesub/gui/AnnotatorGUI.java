@@ -159,6 +159,12 @@ public class AnnotatorGUI {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        if (args.length == 3) {
+            ag.raxmlPath.setText(args[0]);
+            ag.pamlPath.setText(args[1]);
+            ag.alignmentPath.setText(args[2]);
+            ag.runButton.doClick(); // автоматический запуск
+        }
     }
 
     private void setActionsEnabled(boolean enabled) {
@@ -527,7 +533,8 @@ public class AnnotatorGUI {
                     runButton.setText("RUN");
                     recurseSetEnabled(North, true);
 
-                    JOptionPane.showMessageDialog(frame, "Analysis complete. See 'substitutions.tree' and 'substitutions.tsv'");
+                    // JOptionPane.showMessageDialog(frame, "Analysis complete. See 'substitutions.tree' and 'substitutions.tsv'");
+                    frame.dispose();
                 } catch (Exception e) {
                     // NOTE: do something with the exception
                     e.getCause().printStackTrace();
